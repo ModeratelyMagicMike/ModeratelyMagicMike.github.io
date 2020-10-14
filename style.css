@@ -28,7 +28,7 @@ a{
     padding-top: 40vh;
     padding-left: 20vw;
     text-align: center;
-    align-self: last baseline;
+    align-self: self-start;
 }
 
 .section-1 p{
