@@ -4,6 +4,7 @@
 .grid-2{
     display: grid;
     grid-template-columns: repeat(2,1fr);
+    align-items: end;
 }
 
 body{
@@ -28,7 +29,7 @@ a{
     padding-top: 40vh;
     padding-left: 20vw;
     text-align: center;
-    align-self: self-start;
+
 }
 
 .section-1 p{
