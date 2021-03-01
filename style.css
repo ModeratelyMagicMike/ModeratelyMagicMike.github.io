@@ -71,6 +71,15 @@ a{
     padding-left: 0;
     width: 100px;
 }
+
+.no_bullet {
+    list-style: none;
+  }
+
+.li_space {
+    padding: 5px 0px; 
+}
+
 /* animations / utilities */
 .section-2 a:hover{
     font-size: 1.3rem;
