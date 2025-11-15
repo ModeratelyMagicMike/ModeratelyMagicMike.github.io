@@ -2,11 +2,12 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 body {
+  margin: 0;
   background-color: #101214;
-  color: #eeeeee;/*#7a7c80;*/
+  color: #bcbcbc;
   font-family: "Roboto", sans-serif;
-  
 }
+
 
 header {
   padding-top: 5%;
@@ -15,19 +16,23 @@ header {
   flex-direction: column;
 }
 
+/* Center the entire text column under the globe */
 section {
-  width: 90vw;          /* responsive width and keep*/
-  max-width: 900px;     /* don’t let it get too wide */
-  margin: 40px auto 0;  /* center horizontally under the globe */
+  width: 90vw;          /* matches old behavior */
+  max-width: 900px;     /* exact width of your text column */
+  margin: 40px auto 0;  /* centers the whole block */
   box-sizing: border-box;
-
+  text-align: left;     /* ensures text aligns like "About" */
 }
 
- article {
-   padding: 10px;
+/* Make all sections (About, Skills, Projects, Contact) match */
+article {
+  width: 100%;          /* every article same width */
+  padding: 10px;
   margin: 10px 0;
-
+  box-sizing: border-box;
 }
+
 
 h2 {
   color: #fff 
@@ -40,7 +45,7 @@ h2 {
 }
 
 a {
-  color: #eeeeee;
+  color: #bcbcbc;
   text-decoration: none;
 }
 
@@ -61,20 +66,13 @@ a:hover {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-
-  /* NEW — this blocks the contour-lines */
-  background-color: #101214;  
-
-  background-image: url("https://i.imgur.com/Qk4UXcU.png");
+  background: transparent url("https://i.imgur.com/Qk4UXcU.png");
   background-size: cover;
-
-  box-shadow: inset 0px -20px 50px 10px #00ffff80,
-              0px 0px 30px 6px #00ffff70;
+  box-shadow: inset 0px -20px 50px 10px #00ffff80, 0px 0px 30px 6px #00ffff70;
   transform-style: preserve-3d;
   transform: rotate(20deg);
   animation: rotate 20s linear infinite;
 }
-
 
 @keyframes rotate {
   0% {
@@ -86,26 +84,32 @@ a:hover {
   }
 }
 
-/* container just to hold the filter definition */
+/* Holds the SVG filter definition off-screen */
 .svg-filters {
   position: absolute;
   width: 0;
   height: 0;
 }
 
-/* full-viewport contour-map background */
+/* Full-viewport contour-map background */
 .topo-bg {
   position: fixed;
-  inset: 0;
-  z-index: -1;
+  inset: 0;                  /* top:0 right:0 bottom:0 left:0 */
+  z-index: -1;               /* behind everything */
   pointer-events: none;
 
-  /* base color matches your dark theme */
-  background: #101214;
+  background: #101214;       /* same dark base as body */
+  filter: url(#topography);  /* apply contour filter */
+  opacity: 0.4;              /* tweak intensity */
+}
 
-  /* apply contour lines */
-  filter: url(#topography);
-
-  /* tweak strength */
-  opacity: 0.4;
+/* Central black panel that hides contours behind it */
+.page-inner {
+  position: relative;
+  width: 90vw;
+  max-width: 900px;          /* match your text column width */
+  margin: 0 auto;            /* center the panel */
+  min-height: 100vh;
+  background: #101214;       /* solid black panel */
+  box-sizing: border-box;
 }
