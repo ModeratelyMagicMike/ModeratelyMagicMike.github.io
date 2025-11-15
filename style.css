@@ -106,6 +106,6 @@ a:hover {
   /* apply contour lines */
   filter: url(#topography);
 
-  /* tweak strength background */
+  /* tweak strength */
   opacity: 0.4;
 }
