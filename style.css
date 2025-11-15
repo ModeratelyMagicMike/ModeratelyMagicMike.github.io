@@ -16,7 +16,7 @@ header {
 }
 
 section {
-  width: 90vw;          /* responsive width */
+  width: 90vw;          /* responsive width and keep*/
   max-width: 900px;     /* don’t let it get too wide */
   margin: 40px auto 0;  /* center horizontally under the globe */
   box-sizing: border-box;
