@@ -161,3 +161,15 @@ a:hover {
     padding: 0 16px;
   }
 }
+
+@media (max-width: 600px) {
+  #earth {
+    width: 220px;
+    height: 220px;
+    box-shadow:
+      inset 0px -12px 26px 6px #00ffff80,
+      0px 0px 18px 3px #00ffff70;
+    animation: spin-globe 28s linear infinite; /* slower = fewer updates */
+  }
+}
+
