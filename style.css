@@ -16,13 +16,15 @@ header {
 }
 
 section {
-  display: flex;
-  flex-direction: column;
+  width: 90vw; /*repsoinvise width*/
+  max-width: 900px;
+  margin: 40px auto 0; /*center horizontally */
+  box-sizing: border-box
 }
 
  article {
         padding: 10px;
-        margin: 10px;
+        margin: 10px 0; /* vert only, no l/r */
 }
 
 h2 {
