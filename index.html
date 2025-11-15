@@ -6,86 +6,90 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 <title>ModeratelyMagicMike</title>
-  </head>
+</head>
 
-  
-   <body>
-     <!-- Topographic contour SVG filter  republishj-->
-<svg class="svg-filters" width="0" height="0"
-     viewBox="0 0 0 0" xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <defs>
-    <filter id="topography">
-      <!-- fractal base -->
-      <feTurbulence seed="0" type="fractalNoise"
-                    baseFrequency="0.0033" numOctaves="1" />
-      <feColorMatrix type="saturate" values="0" result="noise" />
+<body>
+  <!-- Topographic contour SVG filter -->
+  <svg class="svg-filters" width="0" height="0"
+       viewBox="0 0 0 0" xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="topography">
+        <feTurbulence seed="0" type="fractalNoise"
+                      baseFrequency="0.0033" numOctaves="1" />
+        <feColorMatrix type="saturate" values="0" result="noise" />
 
-      <!-- multiple height bands (contour steps) -->
-      <feComponentTransfer in="noise" result="h1">
-        <feFuncA type="table" tableValues="-220 100" />
-      </feComponentTransfer>
-      <feMorphology operator="dilate" radius="1" />
-      <feComposite in2="h1" result="a1" operator="out" />
+        <feComponentTransfer in="noise" result="h1">
+          <feFuncA type="table" tableValues="-220 100" />
+        </feComponentTransfer>
+        <feMorphology operator="dilate" radius="1" />
+        <feComposite in2="h1" result="a1" operator="out" />
 
-      <feComponentTransfer in="noise" result="h2">
-        <feFuncA type="table" tableValues="-160 100" />
-      </feComponentTransfer>
-      <feMorphology operator="dilate" radius="1" />
-      <feComposite in2="h2" result="a2" operator="out" />
+        <feComponentTransfer in="noise" result="h2">
+          <feFuncA type="table" tableValues="-160 100" />
+        </feComponentTransfer>
+        <feMorphology operator="dilate" radius="1" />
+        <feComposite in2="h2" result="a2" operator="out" />
 
-      <feComponentTransfer in="noise" result="h3">
-        <feFuncA type="table" tableValues="-120 100" />
-      </feComponentTransfer>
-      <feMorphology operator="dilate" radius="1" />
-      <feComposite in2="h3" result="a3" operator="out" />
+        <feComponentTransfer in="noise" result="h3">
+          <feFuncA type="table" tableValues="-120 100" />
+        </feComponentTransfer>
+        <feMorphology operator="dilate" radius="1" />
+        <feComposite in2="h3" result="a3" operator="out" />
 
-      <feComponentTransfer in="noise" result="h4">
-        <feFuncA type="table" tableValues="-80 100" />
-      </feComponentTransfer>
-      <feMorphology operator="dilate" radius="1" />
-      <feComposite in2="h4" result="a4" operator="out" />
+        <feComponentTransfer in="noise" result="h4">
+          <feFuncA type="table" tableValues="-80 100" />
+        </feComponentTransfer>
+        <feMorphology operator="dilate" radius="1" />
+        <feComposite in2="h4" result="a4" operator="out" />
 
-      <feComponentTransfer in="noise" result="h5">
-        <feFuncA type="table" tableValues="-50 100" />
-      </feComponentTransfer>
-      <feMorphology operator="dilate" radius="1" />
-      <feComposite in2="h5" result="a5" operator="out" />
+        <feComponentTransfer in="noise" result="h5">
+          <feFuncA type="table" tableValues="-50 100" />
+        </feComponentTransfer>
+        <feMorphology operator="dilate" radius="1" />
+        <feComposite in2="h5" result="a5" operator="out" />
 
-      <!-- merge all contour bands -->
-      <feComposite in="a1" in2="a2" result="c1" operator="over" />
-      <feComposite in="c1" in2="a3" result="c2" operator="over" />
-      <feComposite in="c2" in2="a4" result="c3" operator="over" />
-      <feComposite in="c3" in2="a5" result="c4" operator="over" />
+        <!-- merge the bands -->
+        <feComposite in="a1" in2="a2" result="c1" operator="over" />
+        <feComposite in="c1" in2="a3" result="c2" operator="over" />
+        <feComposite in="c2" in2="a4" result="c3" operator="over" />
+        <feComposite in="c3" in2="a5" result="c4" operator="over" />
 
-      <!-- crisp lines + teal tint -->
-      <feComponentTransfer in="c4" result="c5">
-        <feFuncR type="discrete" tableValues="0 0 0 0" />
-        <feFuncG type="discrete" tableValues="0 0.9 1 1" />
-        <feFuncB type="discrete" tableValues="0 0.9 1 1" />
-        <feFuncA type="discrete" tableValues="0 0.8 0.9 1" />
-      </feComponentTransfer>
+        <!-- tint lines teal-ish -->
+        <feComponentTransfer in="c4" result="c5">
+          <feFuncR type="discrete" tableValues="0 0 0 0" />
+          <feFuncG type="discrete" tableValues="0 0.9 1 1" />
+          <feFuncB type="discrete" tableValues="0 0.9 1 1" />
+          <feFuncA type="discrete" tableValues="0 0.8 0.9 1" />
+        </feComponentTransfer>
 
-      <feComposite in="SourceAlpha" in2="c5" operator="out" result="alpha" />
-      <feComposite in="c5" in2="alpha" operator="over" />
-    </filter>
-  </defs>
-</svg>
+        <feComposite in="SourceAlpha" in2="c5" operator="out" result="alpha" />
+        <feComposite in="c5" in2="alpha" operator="over" />
+      </filter>
+    </defs>
+  </svg>
 
-<!-- full-screen topo layer -->
-<div class="topo-bg" aria-hidden="true"></div>
-    
-     <header>
-  <div id="earth"></div>
-     </header>
-     
-     <section>
-       <article>
-       <h2>About</h2>
-         <p>Mike.
-           <a href="https://github.com/ModeratelyMagicMike"><i class="fab fa-github"></i></a></p>
-         <p>A fan of geomatics and geo-spatial programming/data.</p>
-       </article>
-       
+  <!-- Full-screen contour background -->
+  <div class="topo-bg" aria-hidden="true"></div>
+
+  <!-- Central black panel for globe + text -->
+  <div class="page-inner">
+    <header>
+      <div id="earth"></div>
+    </header>
+
+    <!-- info -->
+    <section>
+      <!-- keep all your existing <article> blocks here, unchanged -->
+      <article>
+        <h2>About</h2>
+        <p>Mike.
+          <a href="https://github.com/ModeratelyMagicMike"><i class="fab fa-github"></i></a>
+        </p>
+        <p>A fan of geomatics and geo-spatial programming/data.</p>
+      </article>
+
+      <!-- ...rest of your current articles exactly as they are... -->
+
        <article>
        <h2>Skills</h2>
          <p>Languages: Python (ArcPy, ArcGIS API for Python, Pandas, Matplotlib, Numpy), JavaScript, HTML/CSS, R, VB, VBA</p>
@@ -116,4 +120,4 @@
          <p>Currently no contact.</p>
        </article>
      </section>
-   </body>
+</body>
