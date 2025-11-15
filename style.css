@@ -1,13 +1,12 @@
 /* global */
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 body {
-  margin: 0;
   background-color: #101214;
-  color: #eeeeee; /*#7a7c80;*/
-  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #7a7c80;
+  font-family: "Roboto", sans-serif;
+  
 }
-
-/* layout */
 
 header {
   padding-top: 5%;
@@ -17,159 +16,63 @@ header {
 }
 
 section {
-  width: 90vw;          /* responsive width */
-  max-width: 900px;     /* don’t let it get too wide */
-  margin: 40px auto 0;  /* center horizontally under the globe */
-  box-sizing: border-box;
+  width: 90vw; /*repsoinvise width*/
+  max-width: 900px;
+  margin: 40px auto 0; /*center horizontally */
+  box-sizing: border-box
 }
 
-article {
-  padding: 10px;
-  margin: 10px 0;
+ article {
+        padding: 10px;
+        margin: 10px 0; /* vert only, no l/r */
 }
 
 h2 {
-  color: #fff;
-  margin: 0 0 8px;
+  color: #fff 
 }
 
-p {
+ p {
   font-size: 1.1rem;
   padding-bottom: 10px;
-  margin: 0;
+  margin: 0; 
 }
 
 a {
-  color: #eeeeee;
+  color: #7a7c80;
   text-decoration: none;
-  display: inline-block;                  /* so scaling doesn’t mess layout */
-  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 li {
   margin-bottom: 3px;
 }
 
-.no_bullet {
-  list-style: none;
-}
-
-.li_space {
-  margin-bottom: 8px;
-}
-
 /* animations / utilities */
-
 a:hover {
-  /* visually similar to increasing font-size, but cheaper & smoother */
-  transform: scale(1.1);
+  font-size: 1.3rem;
   color: #fff;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* earth globe */
-
-/* smoother, GPU-friendly globe spin */
 #earth {
   position: relative;
   width: 300px;
   height: 300px;
   border-radius: 50%;
-
-  background-color: #101214;
-  background-image: url("https://i.imgur.com/Qk4UXcU.png");
+  background: transparent url("https://i.imgur.com/Qk4UXcU.png");
   background-size: cover;
-  background-position: center;
-
-  /* slightly lighter shadows but same look */
-  box-shadow:
-    inset 0px -16px 36px 8px #00ffff80,
-    0px 0px 24px 4px #00ffff70;
-
-  transform-origin: 50% 50%;
-  will-change: transform;          /* hint to GPU */
-  animation: spin-globe 22s linear infinite;
+  box-shadow: inset 0px -20px 50px 10px #00ffff80, 0px 0px 30px 6px #00ffff70;
+  transform-style: preserve-3d;
+  transform: rotate(20deg);
+  animation: rotate 20s linear infinite;
 }
 
-/* spin using transform instead of background-position */
-@keyframes spin-globe {
-  from {
-    transform: rotateZ(20deg);     /* same tilt you had */
-  }
-  to {
-    transform: rotateZ(380deg);    /* 20deg + 360deg */
-  }
-}
-
-
-/* SVG filter container */
-
-.svg-filters {
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
-/* full-viewport contour-map background */
-
-.topo-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-
-  /* base color matches your dark theme */
-  background: #101214;
-
-  /* apply contour lines */
-  filter: url(#topography);
-
-  /* tweak strength */
-  opacity: 0.35;
-}
-
-/* prefers-reduced-motion: turn off heavy animations/filter */
-
-@media (prefers-reduced-motion: reduce) {
-  #earth {
-    animation: none;
+@keyframes rotate {
+  0% {
+    background-position: 0 0;
   }
 
-  .topo-bg {
-    filter: none;
-    opacity: 1;
+  100% {
+    background-position: 530px 0;
   }
 }
-
-/* mobile tweaks */
-
-@media (max-width: 600px) {
-  header {
-    padding-top: 40px;
-  }
-
-  #earth {
-    width: 220px;
-    height: 220px;
-    box-shadow:
-      inset 0px -14px 35px 8px #00ffff80,
-      0px 0px 22px 4px #00ffff70;
-  }
-
-  section {
-    margin-top: 24px;
-    padding: 0 16px;
-  }
-}
-
-@media (max-width: 600px) {
-  #earth {
-    width: 220px;
-    height: 220px;
-    box-shadow:
-      inset 0px -12px 26px 6px #00ffff80,
-      0px 0px 18px 3px #00ffff70;
-    animation: spin-globe 28s linear infinite; /* slower = fewer updates */
-  }
-}
-
