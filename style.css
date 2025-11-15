@@ -69,37 +69,38 @@ a:hover {
 
 /* earth globe */
 
+/* smoother, GPU-friendly globe spin */
 #earth {
   position: relative;
   width: 300px;
   height: 300px;
   border-radius: 50%;
 
-  /* blocks the contour-lines behind */
   background-color: #101214;
   background-image: url("https://i.imgur.com/Qk4UXcU.png");
   background-size: cover;
-  background-position: 0 0;
+  background-position: center;
 
+  /* slightly lighter shadows but same look */
   box-shadow:
-    inset 0px -20px 50px 10px #00ffff80,
-    0px 0px 30px 6px #00ffff70;
+    inset 0px -16px 36px 8px #00ffff80,
+    0px 0px 24px 4px #00ffff70;
 
-  transform-style: preserve-3d;
-  transform: rotate(20deg);
-  animation: rotate 20s linear infinite;
-  will-change: transform, background-position; /* GPU hint */
+  transform-origin: 50% 50%;
+  will-change: transform;          /* hint to GPU */
+  animation: spin-globe 22s linear infinite;
 }
 
-@keyframes rotate {
-  0% {
-    background-position: 0 0;
+/* spin using transform instead of background-position */
+@keyframes spin-globe {
+  from {
+    transform: rotateZ(20deg);     /* same tilt you had */
   }
-
-  100% {
-    background-position: 530px 0;
+  to {
+    transform: rotateZ(380deg);    /* 20deg + 360deg */
   }
 }
+
 
 /* SVG filter container */
 
